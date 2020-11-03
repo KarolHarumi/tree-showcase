@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Card */
+.Card {
+  width: 400px;
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+}
+
+.Card h2 {
+  font-size: 21px;
+  margin: 0 0 10px;
+}
+
+.Card p {
+  font-size: 16px;
+  margin: 0;
+  font-style: italic;
+}
+
+.Card .Image-container {
+  border: 1px solid #000;
+  width: 400px;
+  height: 400px;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px 0;
+}
+
+.Card .Button {
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 5px;
+}

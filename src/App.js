@@ -1,22 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className={'Card'}>
+          <h2>Red Mangrove</h2>
+          <p>Rhizophora mangle</p>
+
+          <span className={'Image-container'} style={{backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/en/1/16/Red_mangrove-everglades_natl_park.jpg)'}}></span>
+
+          <a href="#" className={'Button'}>Show image</a>
+        </div>
+
       </header>
     </div>
   );
