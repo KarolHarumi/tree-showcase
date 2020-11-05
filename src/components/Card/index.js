@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { 
     CardContainer, 
     Title, 
@@ -8,18 +9,35 @@ import {
 } from './Card';
 
 function Card() {
+    const [data, setData] = useState([]);
+ 
+    useEffect(async () => {
+        fetch('https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json')
+        .then(response => response.json())
+        .then(response => {
+            if(response !== undefined) {
+                setData(response.trees);
+            } 
+        });
+    },[]);
+    
   return (
-    <CardContainer>
-        <Title>Red Mangrove</Title>
-        <Subtitle>Rhizophora mangle</Subtitle>
+    <>
+        {data.map((tree, index) => (
+            <CardContainer key={index}>
+                <Title>{tree.name}</Title>
+                <Subtitle>{tree.species_name}</Subtitle>
 
-        <Image 
-            className={'Image-container'} 
-            style={{backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/en/1/16/Red_mangrove-everglades_natl_park.jpg)'}} 
-        />
+                <Image 
+                    className={'Image-container'} 
+                    style={{backgroundImage: `url(${tree.image})`}} 
+                />
 
-        <Button href="#" className={'Button'}>Show image</Button>
-    </CardContainer>
+                <Button href="#" className={'Button'}>Show image</Button>
+            </CardContainer>
+        ))}
+    </>
+
   );
 }
 
