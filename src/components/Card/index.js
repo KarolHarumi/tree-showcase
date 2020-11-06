@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { 
-    CardContainer, 
+    CardContainer,
+    CardContent, 
     Title, 
     Subtitle, 
     Image, 
@@ -36,19 +37,20 @@ function Card() {
     <>
         {data.map((tree, index) => (
             <CardContainer key={index}>
-                <Title>{tree.name}</Title>
-                <Subtitle>{tree.species_name}</Subtitle>
-
                 {showImage[index] ? 
-                    <Image 
-                        className={'Image-container'}  
-                        style={{backgroundImage: `url(${tree.image})`}} 
-                    /> :  null
+                    <Image  style={{backgroundImage: `url(${tree.image})`}} /> :  null
                 }
 
-                <Button href="#" className={'Button'} onClick={() => toggleImage(index)}>
-                    {showImage[index] ? 'Hide image' : 'Show image'}
-                </Button>
+                <CardContent>
+                    <span>
+                        <Title>{tree.name}</Title>
+                        <Subtitle>{tree.species_name}</Subtitle>
+                    </span>
+                    
+                    <Button onClick={() => toggleImage(index)}>
+                        {showImage[index] ? 'Hide image' : 'Show image'}
+                    </Button>
+                </CardContent>
             </CardContainer>
         ))}
     </>
