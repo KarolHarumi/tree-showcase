@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Button from './../Button';
 
 import { 
     CardContainer,
     CardContent, 
     Title, 
     Subtitle, 
-    Image, 
-    Button 
+    Image
 } from './Card';
 
 function Card() {
@@ -47,9 +47,10 @@ function Card() {
                         <Subtitle>{tree.species_name}</Subtitle>
                     </span>
                     
-                    <Button onClick={() => toggleImage(index)}>
-                        {showImage[index] ? 'Hide image' : 'Show image'}
-                    </Button>
+                    <Button 
+                        onClick={() => toggleImage(index)}
+                        text={showImage[index] ? 'Hide image' : 'Show image'} 
+                    />
                 </CardContent>
             </CardContainer>
         ))}
