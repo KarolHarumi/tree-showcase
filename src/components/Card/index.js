@@ -10,8 +10,15 @@ import {
 
 function Card() {
     const [data, setData] = useState([]);
- 
-    useEffect(async () => {
+    const [showImage, setShowImage] = useState({});
+
+    const toggleImage = index => {
+        setShowImage(
+            prevImage => ({...prevImage, [index]: !prevImage[index]})
+        );    
+    };
+
+    const fetchTreeData = () => {
         fetch('https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json')
         .then(response => response.json())
         .then(response => {
@@ -19,8 +26,12 @@ function Card() {
                 setData(response.trees);
             } 
         });
+    };
+
+    useEffect(async () => {
+        fetchTreeData();
     },[]);
-    
+
   return (
     <>
         {data.map((tree, index) => (
@@ -28,12 +39,16 @@ function Card() {
                 <Title>{tree.name}</Title>
                 <Subtitle>{tree.species_name}</Subtitle>
 
-                <Image 
-                    className={'Image-container'} 
-                    style={{backgroundImage: `url(${tree.image})`}} 
-                />
+                {showImage[index] ? 
+                    <Image 
+                        className={'Image-container'}  
+                        style={{backgroundImage: `url(${tree.image})`}} 
+                    /> :  null
+                }
 
-                <Button href="#" className={'Button'}>Show image</Button>
+                <Button href="#" className={'Button'} onClick={() => toggleImage(index)}>
+                    {showImage[index] ? 'Hide image' : 'Show image'}
+                </Button>
             </CardContainer>
         ))}
     </>
